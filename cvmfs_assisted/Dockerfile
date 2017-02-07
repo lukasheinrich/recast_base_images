@@ -5,7 +5,9 @@ RUN yum install -y gcc-gfortran openssl-devel pcre-devel mesa-libGL-devel glew-d
 RUN yum install -y procmail openssl098e.x86_64 compat-libf2c-34.x86_64 libtool-ltdl libtool-ltdl-devel
 RUN yum install -y mktemp
 RUN curl -sSL https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 > /usr/local/bin/jq && chmod +x /usr/local/bin/jq
-RUN mkdir /code
+RUN curl -o /etc/krb5.conf https://raw.githubusercontent.com/betatim/everware-cern-analysis/master/krb5.conf
+RUN curl -o /etc/ssh/ssh_config https://raw.githubusercontent.com/lukasheinrich/asg-docker/master/preasg-base/custom_ssh_config
+RUN mkdir /code ~/.ssh
 WORKDIR /code
 ENV ATLAS_LOCAL_ROOT_BASE="/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase"
 ADD resources/bashrc /root/.bashrc
